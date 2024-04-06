@@ -136,7 +136,7 @@ public class TxnService implements UserDetailsService {
 
         HttpHeaders httpHeaders = new HttpHeaders();
 
-        httpHeaders.setBasicAuth("txn_service", "txn123");
+        httpHeaders.setBasicAuth("978945654", "Karan");
 
         HttpEntity request = new HttpEntity(httpHeaders);
 
