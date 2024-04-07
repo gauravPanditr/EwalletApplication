@@ -9,22 +9,22 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
+public class UserSecurityConfig  {
 
     @Autowired
     UserService userService;
 
-    @Override
+
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .httpBasic()
+
+  protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.httpBasic()
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests()
@@ -33,5 +33,6 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").hasAnyAuthority(UserConstants.ADMIN_AUTHORITY, UserConstants.SERVICE_AUTHORITY)               // admin driven actions
                 .and()
                 .formLogin();
-    }
+        return httpSecurity.build();
+  }
 }
