@@ -16,7 +16,6 @@ It is a microservice architecture-based RESTful Web Service with Kafka enabled t
 12) Hibernate(ORM)
 13) MySQL(Persistant Storage)
 14) Spring Security
-15) Redis Caching
 16) Microservices Architecture
 17) Kafka(Massaging Queue)
 # Functioning of Application
